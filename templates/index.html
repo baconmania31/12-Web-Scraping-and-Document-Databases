@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class = "col-md-12">
+            <div class="jumbotron">
+                <center><h1>Mission to Mars</h1></center>
+                <center><p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p></center>
+            </div>
+        </div>
+    </div>
+    {% for mars in marsData %}
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Latest Mars News</h2>
+                        <h4>{{mars.news_title}}</h4>
+                        <p> {{mars.news_p}}</p>
+                </div>
+        </div>
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h2>Featured Mars Image</h2>
+                    <img src= "{{mars.featured_image_url}}" alt="Mars Image" width = "550">
+                </div>
+                <br>
+                <div class="col-sm-5">
+                    <div  align = "center" style = "border: 1px ridge grey">
+                        <br>
+                        <h4 align>
+                            Current Weather on Mars
+                        </h4>
+                        <p>{{mars.mars_weather}}</p>
+                    </div>
+                    <div class = "col-sm-5">
+                            <br>
+                            <h4>Mars Facts</h4>
+                            <style type="text/css">
+                                .tg  {border-collapse:collapse;border-spacing:0;}
+                                .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;border-color:black;}
+                                .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;border-color:black;}
+                                .tg .tg-s268{text-align:left}
+                                </style>
+                                <table class="tg">
+                                  <tr>
+                                    <th class="tg-s268">Description</th>
+                                    <th class="tg-s268">Value</th>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Equatorial Diameter</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Equatorial_Diameter}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Polar Diameter</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Polar_Diameter}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Mass</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Mass}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Moons</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Moons}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Orbit Distance</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Orbit_Distance}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Orbit period</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Orbit_Period}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Surface Tempurature</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Surface_Temperature}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">First Recorded</td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.First_Record}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-s268">Recorded By </td>
+                                    <td nowrap class="tg-s268">{{mars.mars_dict.Value.Recorded_By}}</td>
+                                  </tr>
+                                </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <br>
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                        {% for hemi in mars.hemisphere_dict %}
+                        <img src= "{{hemi.image_url}}" alt="Mars Image" width = "450">
+                        {% endfor %}
+                </div> 
+            </div>
+    </div>
+    {% endfor %}
+</html>
